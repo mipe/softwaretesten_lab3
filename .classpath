@@ -16,6 +16,6 @@
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/Users/dominik/Documents/Education/Uni/WS10/SoftwareTesten/eclipse/softwaretesten_lab3/selenium_rc/selenium-remote-control-1.0.3/selenium-java-client-driver-1.0.1/selenium-java-client-driver.jar"/>
+	<classpathentry kind="lib" path="selenium_rc/selenium-remote-control-1.0.3/selenium-java-client-driver-1.0.1/selenium-java-client-driver.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
