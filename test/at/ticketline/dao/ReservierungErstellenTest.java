@@ -52,7 +52,7 @@ public class ReservierungErstellenTest extends SeleneseTestCase {
         selenium.click("link=Veranstaltungen");
         selenium.click("veranstaltung_1");
         selenium.click("auffuehrung_1");
-        verifyFalse(selenium.isElementPresent("platz_1_" + number));
+        verifyFalse(selenium.isElementPresent("platz_"+reihe+"_" + platz));
         selenium.click("link=Veranstaltungen");
         selenium.click("//li[5]/a");
     }
