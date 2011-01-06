@@ -44,6 +44,10 @@ public class ReservierungErstellenTest extends SeleneseTestCase {
         selenium.click("executeReservierung");
         verifyTrue(selenium.isTextPresent("Die Reservierung wurde erfolgreich durchgeführt"));
         selenium.click("link=Veranstaltungen");
+        selenium.click("veranstaltung_1");
+        selenium.click("auffuehrung_1");
+        verifyFalse(selenium.isElementPresent("platz_1_" + number));
+        selenium.click("link=Veranstaltungen");
         selenium.click("//li[5]/a");
     }
 
