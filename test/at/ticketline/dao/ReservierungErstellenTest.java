@@ -15,20 +15,23 @@ import com.thoughtworks.selenium.SeleneseTestCase;
 @RunWith(value = Parameterized.class)
 public class ReservierungErstellenTest extends SeleneseTestCase {
 
-    private int platz;
-    private int reihe;
+    private int[] platz;
+    private int[] reihe;
+    private boolean erfolg;
 
-    public ReservierungErstellenTest(int platz, int reihe) {
+    public ReservierungErstellenTest(int[] platz, int[] reihe, boolean erfolg) {
         this.platz = platz;
         this.reihe = reihe;
+        this.erfolg = erfolg;
     }
 
     @Parameters
     public static Collection<Object[]> data() {
-        Object[][] data = new Object[][] { 
-                { 4,1 }, { 5,1 }, { 6,1 }, { 7,1 },
-                { 4,2 }, { 5,2 }, { 6,2 }, { 7,2 },
-                { 1,3 }, { 2,3 }, { 3,3 }, { 4,3 },
+        Object[][] data = new Object[][] {
+                { new int[]{4,5,6}, new int[]{1,1,1}, true }, { new int[]{1}, new int[]{5},false}, { new int[]{2}, new int[]{1},false}, { new int[]{2}, new int[]{5},false }, 
+                { new int[]{4}, new int[]{1},true }, { new int[]{5}, new int[]{1},true }, { new int[]{6}, new int[]{1},true }, { new int[]{7}, new int[]{1},true },
+                { new int[]{4}, new int[]{2},true }, { new int[]{5}, new int[]{2},true }, { new int[]{6}, new int[]{2},true }, { new int[]{7}, new int[]{2},true },
+                { new int[]{1}, new int[]{3},true }, { new int[]{2}, new int[]{3},true }, { new int[]{3}, new int[]{3},true }, { new int[]{5,6,7}, new int[]{3,3,3},true }
                                             
         };
         return Arrays.asList(data);
@@ -36,7 +39,7 @@ public class ReservierungErstellenTest extends SeleneseTestCase {
 
     @Before
     public void setUp() throws Exception {
-        selenium = new DefaultSelenium("localhost", 4444, "*firefox", "http://localhost:8080/tllight/");
+        selenium = new DefaultSelenium("localhost", 4444, "*firefox", "http://localhost:8080/tllight");
         selenium.setSpeed("100");
         selenium.start();
     }
@@ -46,15 +49,29 @@ public class ReservierungErstellenTest extends SeleneseTestCase {
         selenium.open("/tllight");
         selenium.click("veranstaltung_1");
         selenium.click("auffuehrung_1");
-        selenium.click("platz_"+ reihe +"_" + platz);
-        selenium.click("executeReservierung");
-        verifyTrue(selenium.isTextPresent("Die Reservierung wurde erfolgreich durchgeführt"));
-        selenium.click("link=Veranstaltungen");
-        selenium.click("veranstaltung_1");
-        selenium.click("auffuehrung_1");
-        verifyFalse(selenium.isElementPresent("platz_"+reihe+"_" + platz));
-        selenium.click("link=Veranstaltungen");
-        selenium.click("//li[5]/a");
+        if (erfolg) {
+            for (int i=0; i<platz.length; i++) {
+                selenium.click("platz_"+ reihe[i] +"_" + platz[i]);
+            }
+            
+            selenium.click("executeReservierung");
+            verifyTrue(selenium.isTextPresent("Die Reservierung wurde erfolgreich durchgeführt"));
+            
+            selenium.click("link=Veranstaltungen");
+            selenium.click("veranstaltung_1");
+            selenium.click("auffuehrung_1");
+            
+            for (int i=0; i<platz.length; i++) {
+                verifyFalse(selenium.isElementPresent("platz_"+reihe[i]+"_" + platz[i]));
+            }
+            
+            selenium.click("link=Veranstaltungen");
+            selenium.click("//li[5]/a");
+        } else {
+            for (int i=0; i<platz.length; i++) {
+                verifyFalse(selenium.isElementPresent("platz_"+reihe[i]+"_" + platz[i]));
+            }
+        }
     }
 
     @After
