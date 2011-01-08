@@ -1,7 +1,15 @@
 package at.ticketline.dao;
 
+import java.io.FileReader;
 import java.util.Arrays;
 import java.util.Collection;
+
+import org.apache.commons.dbcp.BasicDataSource;
+import org.dbunit.database.DatabaseConnection;
+import org.dbunit.database.IDatabaseConnection;
+import org.dbunit.dataset.IDataSet;
+import org.dbunit.dataset.xml.XmlDataSet;
+import org.dbunit.operation.DatabaseOperation;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -39,6 +47,7 @@ public class ReservierungErstellenTest extends SeleneseTestCase {
 
     @Before
     public void setUp() throws Exception {
+    	loadData("full.xml");
         selenium = new DefaultSelenium("localhost", 4444, "*firefox", "http://localhost:8080/tllight");
         selenium.setSpeed("100");
         selenium.start();
@@ -77,5 +86,22 @@ public class ReservierungErstellenTest extends SeleneseTestCase {
     @After
     public void tearDown() throws Exception {
         selenium.stop();
+    }
+    
+    protected void loadData(String datasetFileName) {
+        try {
+        	BasicDataSource dataSource = new BasicDataSource();
+    		dataSource.setDriverClassName("org.hsqldb.jdbcDriver");
+    		dataSource.setUrl("jdbc:hsqldb:hsql://localhost/ticketline");
+    		dataSource.setUsername("sa");
+    		dataSource.setPassword("");
+    		
+            IDataSet dataSet = new XmlDataSet(new FileReader(datasetFileName));
+            IDatabaseConnection db = new DatabaseConnection(dataSource.getConnection());
+            DatabaseOperation.CLEAN_INSERT.execute(db, dataSet);
+            DatabaseOperation.REFRESH.execute(db, dataSet);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
