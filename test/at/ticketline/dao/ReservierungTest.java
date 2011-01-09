@@ -39,7 +39,8 @@ public class ReservierungTest extends SeleneseTestCase {
                 { new int[]{4,5,6}, new int[]{1,1,1}, true }, { new int[]{1}, new int[]{5},false}, { new int[]{2}, new int[]{1},false}, { new int[]{2}, new int[]{5},false }, 
                 { new int[]{4}, new int[]{1},true }, { new int[]{5}, new int[]{1},true }, { new int[]{6}, new int[]{1},true }, { new int[]{7}, new int[]{1},true },
                 { new int[]{4}, new int[]{2},true }, { new int[]{5}, new int[]{2},true }, { new int[]{6}, new int[]{2},true }, { new int[]{7}, new int[]{2},true },
-                { new int[]{1}, new int[]{3},true }, { new int[]{2}, new int[]{3},true }, { new int[]{3}, new int[]{3},true }, { new int[]{5,6,7}, new int[]{3,3,3},true }
+                { new int[]{1}, new int[]{3},true }, { new int[]{2}, new int[]{3},true }, { new int[]{3}, new int[]{3},true }, { new int[]{5,6,7}, new int[]{3,3,3},true },
+                { new int[]{4,5,6}, new int[]{1,2,3},true }
                                             
         };
         return Arrays.asList(data);
