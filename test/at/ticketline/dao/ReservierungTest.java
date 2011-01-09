@@ -21,13 +21,13 @@ import com.thoughtworks.selenium.DefaultSelenium;
 import com.thoughtworks.selenium.SeleneseTestCase;
 
 @RunWith(value = Parameterized.class)
-public class ReservierungErstellenTest extends SeleneseTestCase {
+public class ReservierungTest extends SeleneseTestCase {
 
     private int[] platz;
     private int[] reihe;
     private boolean erfolg;
 
-    public ReservierungErstellenTest(int[] platz, int[] reihe, boolean erfolg) {
+    public ReservierungTest(int[] platz, int[] reihe, boolean erfolg) {
         this.platz = platz;
         this.reihe = reihe;
         this.erfolg = erfolg;
@@ -76,6 +76,18 @@ public class ReservierungErstellenTest extends SeleneseTestCase {
             
             selenium.click("link=Veranstaltungen");
             selenium.click("//li[5]/a");
+            
+            // check if the reservation is really deleted
+
+            selenium.click("link=Veranstaltungen");
+            selenium.click("veranstaltung_1");
+            selenium.click("auffuehrung_1");
+            
+            for (int i=0; i<platz.length; i++) {
+                verifyTrue(selenium.isElementPresent("platz_"+reihe[i]+"_"+platz[i]));
+            }
+            
+            
         } else {
             for (int i=0; i<platz.length; i++) {
                 verifyFalse(selenium.isElementPresent("platz_"+reihe[i]+"_" + platz[i]));
