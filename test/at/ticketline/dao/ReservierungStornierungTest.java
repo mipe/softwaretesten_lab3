@@ -21,13 +21,13 @@ import com.thoughtworks.selenium.DefaultSelenium;
 import com.thoughtworks.selenium.SeleneseTestCase;
 
 @RunWith(value = Parameterized.class)
-public class ReservierungTest extends SeleneseTestCase {
+public class ReservierungStornierungTest extends SeleneseTestCase {
 
     private int[] platz;
     private int[] reihe;
     private boolean erfolg;
 
-    public ReservierungTest(int[] platz, int[] reihe, boolean erfolg) {
+    public ReservierungStornierungTest(int[] platz, int[] reihe, boolean erfolg) {
         this.platz = platz;
         this.reihe = reihe;
         this.erfolg = erfolg;
@@ -55,7 +55,7 @@ public class ReservierungTest extends SeleneseTestCase {
     }
 
     @Test
-    public void testReservierungErstellen() throws Exception {
+    public void testReservierungStornierung() throws Exception {
         selenium.open("/tllight");
         selenium.click("veranstaltung_1");
         selenium.click("auffuehrung_1");
