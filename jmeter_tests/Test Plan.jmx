@@ -372,7 +372,14 @@
         <hashTree/>
         <HTTPSampler guiclass="HttpTestSampleGui" testclass="HTTPSampler" testname="tllight/service/transaktion/createReservierung" enabled="true">
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
-            <collectionProp name="Arguments.arguments"/>
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&quot;auffuehrung_id&quot;:1,&quot;plaetze&quot;:[1]}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+              </elementProp>
+            </collectionProp>
           </elementProp>
           <stringProp name="HTTPSampler.domain">localhost</stringProp>
           <stringProp name="HTTPSampler.port">8080</stringProp>
@@ -385,16 +392,7 @@
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
           <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
           <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-          <boolProp name="HTTPSampler.DO_MULTIPART_POST">true</boolProp>
-          <elementProp name="HTTPsampler.Files" elementType="HTTPFileArgs">
-            <collectionProp name="HTTPFileArgs.files">
-              <elementProp name="/Users/dominik/Documents/Education/Uni/WS10/SoftwareTesten/eclipse/softwaretesten_lab3/jmeter_tests/transaktion.json" elementType="HTTPFileArg">
-                <stringProp name="File.path">/Users/dominik/Documents/Education/Uni/WS10/SoftwareTesten/eclipse/softwaretesten_lab3/jmeter_tests/transaktion.json</stringProp>
-                <stringProp name="File.paramname"></stringProp>
-                <stringProp name="File.mimetype">application/json</stringProp>
-              </elementProp>
-            </collectionProp>
-          </elementProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
           <boolProp name="HTTPSampler.monitor">false</boolProp>
           <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
         </HTTPSampler>
