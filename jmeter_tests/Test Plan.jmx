@@ -22,11 +22,11 @@
         <longProp name="ThreadGroup.start_time">1295623475000</longProp>
         <longProp name="ThreadGroup.end_time">1295623475000</longProp>
         <boolProp name="ThreadGroup.scheduler">true</boolProp>
-        <stringProp name="ThreadGroup.duration">300</stringProp>
+        <stringProp name="ThreadGroup.duration">2</stringProp>
         <stringProp name="ThreadGroup.delay"></stringProp>
       </ThreadGroup>
       <hashTree>
-        <HTTPSampler guiclass="HttpTestSampleGui" testclass="HTTPSampler" testname="tllight/service/veranstaltung/list" enabled="true">
+        <HTTPSampler guiclass="HttpTestSampleGui" testclass="HTTPSampler" testname="tllight/service/auffuehrung/belegung/ID" enabled="true">
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
             <collectionProp name="Arguments.arguments"/>
           </elementProp>
@@ -36,7 +36,7 @@
           <stringProp name="HTTPSampler.response_timeout"></stringProp>
           <stringProp name="HTTPSampler.protocol"></stringProp>
           <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-          <stringProp name="HTTPSampler.path">tllight/service/veranstaltung/list</stringProp>
+          <stringProp name="HTTPSampler.path">tllight/service/auffuehrung/belegung/${id}</stringProp>
           <stringProp name="HTTPSampler.method">GET</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
           <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
@@ -45,7 +45,19 @@
           <boolProp name="HTTPSampler.monitor">false</boolProp>
           <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
         </HTTPSampler>
-        <hashTree/>
+        <hashTree>
+          <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="auffuehrung.csv" enabled="true">
+            <stringProp name="filename">auffuehrung.csv</stringProp>
+            <stringProp name="fileEncoding"></stringProp>
+            <stringProp name="variableNames">id</stringProp>
+            <stringProp name="delimiter"></stringProp>
+            <boolProp name="quotedData">true</boolProp>
+            <boolProp name="recycle">true</boolProp>
+            <boolProp name="stopThread">true</boolProp>
+            <stringProp name="shareMode">All threads</stringProp>
+          </CSVDataSet>
+          <hashTree/>
+        </hashTree>
         <HTTPSampler guiclass="HttpTestSampleGui" testclass="HTTPSampler" testname="tllight/service/auffuehrung/list" enabled="true">
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
             <collectionProp name="Arguments.arguments"/>
@@ -201,15 +213,27 @@
             <stringProp name="shareMode">All threads</stringProp>
           </CSVDataSet>
           <hashTree/>
-          <ResultSaver guiclass="ResultSaverGui" testclass="ResultSaver" testname="Save Responses to a file" enabled="true">
-            <stringProp name="FileSaver.filename">reihe</stringProp>
-            <boolProp name="FileSaver.errorsonly">false</boolProp>
-            <boolProp name="FileSaver.skipautonumber">false</boolProp>
-            <boolProp name="FileSaver.skipsuffix">false</boolProp>
-            <boolProp name="FileSaver.successonly">false</boolProp>
-          </ResultSaver>
-          <hashTree/>
         </hashTree>
+        <HTTPSampler guiclass="HttpTestSampleGui" testclass="HTTPSampler" testname="tllight/service/veranstaltung/list" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">localhost</stringProp>
+          <stringProp name="HTTPSampler.port">8080</stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">tllight/service/veranstaltung/list</stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <boolProp name="HTTPSampler.monitor">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+        </HTTPSampler>
+        <hashTree/>
         <HTTPSampler guiclass="HttpTestSampleGui" testclass="HTTPSampler" testname="tllight/service/veranstaltung/ID" enabled="true">
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
             <collectionProp name="Arguments.arguments"/>
@@ -242,6 +266,75 @@
           </CSVDataSet>
           <hashTree/>
         </hashTree>
+        <HTTPSampler guiclass="HttpTestSampleGui" testclass="HTTPSampler" testname="tllight/service/transaktion/list" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">localhost</stringProp>
+          <stringProp name="HTTPSampler.port">8080</stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">tllight/service/transaktion/list</stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <boolProp name="HTTPSampler.monitor">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+        </HTTPSampler>
+        <hashTree/>
+        <HTTPSampler guiclass="HttpTestSampleGui" testclass="HTTPSampler" testname="tllight/service/transaktion/ID" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">localhost</stringProp>
+          <stringProp name="HTTPSampler.port">8080</stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">tllight/service/transaktion/ID</stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <boolProp name="HTTPSampler.monitor">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+        </HTTPSampler>
+        <hashTree/>
+        <HTTPSampler guiclass="HttpTestSampleGui" testclass="HTTPSampler" testname="tllight/service/transaktion/createReservierung" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">localhost</stringProp>
+          <stringProp name="HTTPSampler.port">8080</stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">tllight/service/transaktion/createReservierung</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">true</boolProp>
+          <elementProp name="HTTPsampler.Files" elementType="HTTPFileArgs">
+            <collectionProp name="HTTPFileArgs.files">
+              <elementProp name="/home/richie/workspace/softwaretesten_lab3/jmeter_tests/json.json" elementType="HTTPFileArg">
+                <stringProp name="File.path">/home/richie/workspace/softwaretesten_lab3/jmeter_tests/json.json</stringProp>
+                <stringProp name="File.paramname"></stringProp>
+                <stringProp name="File.mimetype">application/json</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <boolProp name="HTTPSampler.monitor">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+        </HTTPSampler>
+        <hashTree/>
         <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report" enabled="true">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
           <objProp>
@@ -369,64 +462,6 @@
           </objProp>
           <stringProp name="filename"></stringProp>
         </ResultCollector>
-        <hashTree/>
-        <HTTPSampler guiclass="HttpTestSampleGui" testclass="HTTPSampler" testname="tllight/service/transaktion/createReservierung" enabled="true">
-          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
-            <collectionProp name="Arguments.arguments"/>
-          </elementProp>
-          <stringProp name="HTTPSampler.domain">localhost</stringProp>
-          <stringProp name="HTTPSampler.port">8080</stringProp>
-          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-          <stringProp name="HTTPSampler.response_timeout"></stringProp>
-          <stringProp name="HTTPSampler.protocol"></stringProp>
-          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-          <stringProp name="HTTPSampler.path">tllight/service/transaktion/createReservierung</stringProp>
-          <stringProp name="HTTPSampler.method">POST</stringProp>
-          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
-          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-          <elementProp name="HTTPsampler.Files" elementType="HTTPFileArgs">
-            <collectionProp name="HTTPFileArgs.files">
-              <elementProp name="/home/heri/development/workspace-test/softwaretesten_lab3/jmeter_tests/json.json" elementType="HTTPFileArg">
-                <stringProp name="File.path">/home/heri/development/workspace-test/softwaretesten_lab3/jmeter_tests/json.json</stringProp>
-                <stringProp name="File.paramname"></stringProp>
-                <stringProp name="File.mimetype">application/json</stringProp>
-              </elementProp>
-            </collectionProp>
-          </elementProp>
-          <boolProp name="HTTPSampler.monitor">false</boolProp>
-          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
-        </HTTPSampler>
-        <hashTree>
-          <ResultSaver guiclass="ResultSaverGui" testclass="ResultSaver" testname="Save Responses to a file" enabled="true">
-            <stringProp name="FileSaver.filename">json</stringProp>
-            <boolProp name="FileSaver.errorsonly">false</boolProp>
-            <boolProp name="FileSaver.skipautonumber">false</boolProp>
-            <boolProp name="FileSaver.skipsuffix">false</boolProp>
-            <boolProp name="FileSaver.successonly">false</boolProp>
-          </ResultSaver>
-          <hashTree/>
-        </hashTree>
-        <HTTPSampler guiclass="HttpTestSampleGui" testclass="HTTPSampler" testname="tllight/service/transaktion/list" enabled="true">
-          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
-            <collectionProp name="Arguments.arguments"/>
-          </elementProp>
-          <stringProp name="HTTPSampler.domain">localhost</stringProp>
-          <stringProp name="HTTPSampler.port">8080</stringProp>
-          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-          <stringProp name="HTTPSampler.response_timeout"></stringProp>
-          <stringProp name="HTTPSampler.protocol"></stringProp>
-          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-          <stringProp name="HTTPSampler.path">tllight/service/transaktion/list</stringProp>
-          <stringProp name="HTTPSampler.method">GET</stringProp>
-          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
-          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-          <boolProp name="HTTPSampler.monitor">false</boolProp>
-          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
-        </HTTPSampler>
         <hashTree/>
         <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Duration Assertion" enabled="true">
           <stringProp name="DurationAssertion.duration">500</stringProp>
