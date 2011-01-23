@@ -324,8 +324,8 @@
           <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
           <elementProp name="HTTPsampler.Files" elementType="HTTPFileArgs">
             <collectionProp name="HTTPFileArgs.files">
-              <elementProp name="/Users/dominik/Documents/Education/Uni/WS10/SoftwareTesten/eclipse/softwaretesten_lab3/jmeter_tests/json.json" elementType="HTTPFileArg">
-                <stringProp name="File.path">/Users/dominik/Documents/Education/Uni/WS10/SoftwareTesten/eclipse/softwaretesten_lab3/jmeter_tests/json.json</stringProp>
+              <elementProp name="/Users/dominik/Documents/Education/Uni/WS10/SoftwareTesten/eclipse/softwaretesten_lab3/jmeter_tests/json${__threadNum}.json" elementType="HTTPFileArg">
+                <stringProp name="File.path">/Users/dominik/Documents/Education/Uni/WS10/SoftwareTesten/eclipse/softwaretesten_lab3/jmeter_tests/json${__threadNum}.json</stringProp>
                 <stringProp name="File.paramname"></stringProp>
                 <stringProp name="File.mimetype">application/json</stringProp>
               </elementProp>
